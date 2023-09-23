@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <h1 class="my-10">Characters</h1>
-        <CharactersCards/>
+    <div class="align-center justify-center">
+        <CharacterCards/>
     </div>
 </template>
