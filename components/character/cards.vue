@@ -1,23 +1,48 @@
 <template>
-    <div>
-        <v-card class="mx-auto" max-width="344">
-            <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px" cover></v-img>
-            <v-card-title>Top western road trips</v-card-title>
-            <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
-            <v-card-actions>
-                <v-btn color="red" variant="flat" @click="viewCharacter()">Explore</v-btn>
-            </v-card-actions>
-        </v-card>
-        <v-dialog v-model="dialog" width="auto" transition="dialog-bottom-transition">
-            <character-person/>
-        </v-dialog>
+    <div class="aling-center">
+        <v-container class="text-center">
+            <h1>Characters</h1>
+            <v-row class="my-10">
+                <v-col v-for="character of characters" :key="character.id" cols="4" class="my-5">
+                    <v-card class="mx-auto" max-width="344">
+                        <v-img :src="character.thumbnail.path + '.' + character.thumbnail.extension" height="400" width="auto" cover />
+                        <v-card-title>{{ character.name }}</v-card-title>
+                        <v-card-actions>
+                            <v-btn color="red" variant="flat" @click="viewCharacter(character)">Explore</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+        <character-person v-if="dialog == true" :viewdialog="dialog" :person="viewPerson" @close="closeCharacter" />
     </div>
 </template>
 <script setup>
 
 const dialog = ref(false);
+const characters = ref({})
+const viewPerson = ref(null)
 
-const viewCharacter = () => {
-    dialog.value = true
+onBeforeMount(() => {
+    loadCharacters();
+});
+
+import axios from 'axios';
+
+const loadCharacters = async () => {
+    const url = "https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=6bf50acb86ffa16f4efaa1bb5a49c59a&hash=d3ed7be405fe7b5dfaa8483c5ec45f07&limit=30";
+    const { data } = await axios.get(url);
+    characters.value = data.data.results
+    console.log(characters.value)
 };
+
+const viewCharacter = (item) => {
+    viewPerson.value = { ...item}
+    dialog.value = true;
+};
+
+const closeCharacter = () => {
+    dialog.value = false;
+}
+
 </script>
