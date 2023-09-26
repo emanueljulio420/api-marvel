@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-dialog v-model="opendialog" width="auto" transition="dialog-bottom-transition">
-            <v-container v-container>
+        <v-dialog v-model="opendialog" width="auto" transition="dialog-bottom-transition" persistent>
+            <v-container>
                 <v-card class="mx-auto">
                     <v-card-text class="mx-8">
                         <v-row align="center" no-gutters>
