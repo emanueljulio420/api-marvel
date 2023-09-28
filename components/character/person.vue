@@ -12,27 +12,27 @@
                             <v-col cols="6">
                                 <div class="mx-10">
                                     <h1 class="text-center">{{ viewPerson.name }}</h1>
-                                    <h3 class="my-3" v-if="viewPerson.description != ''"> Descripción </h3>
-                                    <p class="my-2" v-if="viewPerson.description != ''">{{ viewPerson.description }}</p>
+                                    <h3 class="my-3"> Description </h3>
+                                    <p class="my-2" >{{ viewPerson.description || "Not found description" }}</p>
                                     <ul>
                                         <li class="my-2" v-if="viewPerson.comics.returned != 0">
-                                            <h3 class="d-inline"> Cantidad de comics: </h3>
+                                            <h3 class="d-inline"> Number of comics: </h3>
                                             <p class="d-inline">{{ viewPerson.comics.returned }}</p>
                                         </li>
                                         <li class="my-2" v-if="viewPerson.events.returned != 0">
-                                            <h3 class="d-inline"> Cantidad de events: </h3>
+                                            <h3 class="d-inline"> Number of events: </h3>
                                             <p class="d-inline">{{ viewPerson.events.returned }}</p>
                                         </li>
                                         <li class="my-2" v-if="viewPerson.stories.returned != 0">
-                                            <h3 class="d-inline"> Cantidad de stories: </h3>
+                                            <h3 class="d-inline"> Number of stories: </h3>
                                             <p class="d-inline">{{ viewPerson.stories.returned }}</p>
                                         </li>
                                         <li class="my-2" v-if="viewPerson.series.returned != 0">
-                                            <h3 class="d-inline"> Cantidad de series: </h3>
+                                            <h3 class="d-inline"> number of series: </h3>
                                             <p class="d-inline">{{ viewPerson.series.returned }}</p>
                                         </li>
                                     </ul>
-                                    <h3 v-if="viewPerson.series.returned != 0"> Algunas series </h3>
+                                    <h3 v-if="viewPerson.series.returned != 0"> Some series </h3>
                                     <v-list lines="one">
                                         <v-list-item v-for="(serie, i ) in viewPerson.series.items.slice(0, 3)" :key="serie">
                                             <h3> {{ serie.name }} </h3>
