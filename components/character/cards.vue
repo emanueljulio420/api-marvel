@@ -8,7 +8,7 @@
                         <v-img :src="character.thumbnail.path + '.' + character.thumbnail.extension" height="400" width="auto" cover />
                         <v-card-title>{{ character.name }}</v-card-title>
                         <v-card-actions>
-                            <v-btn color="red" variant="flat" @click="viewCharacter(character)">Explore</v-btn>
+                            <v-btn color="red" variant="flat" @click="viewCharacter(character)">More information</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-col>
